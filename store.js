@@ -1,43 +1,57 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import omit from 'lodash/omit'
 
-const exampleInitialState = {
-  lastUpdate: 0,
-  light: false,
-  count: 0
+const initialState = {
+  people: {}
 }
 
 export const actionTypes = {
-  ADD: 'ADD',
-  TICK: 'TICK'
+  ADD_PERSON: 'ADD_PERSON',
+  EDIT_PERSON: 'EDIT_PERSON',
+  REMOVE_PERSON: 'REMOVE_PERSON'
 }
 
 // REDUCERS
-export const reducer = (state = exampleInitialState, action) => {
+let personId = 0
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.TICK:
-      return Object.assign({}, state, { lastUpdate: action.ts, light: !!action.light })
-    case actionTypes.ADD:
-      return Object.assign({}, state, {
-        count: state.count + 1
-      })
-    default: return state
+    case actionTypes.ADD_PERSON:
+      return {
+        ...state,
+        people: {
+          ...state.people,
+          [personId++]: action.data
+        }
+      }
+    case actionTypes.REMOVE_PERSON:
+      return {
+        ...state,
+        people: omit(state.people, [action.id])
+      }
+    default:
+      return state
   }
 }
 
 // ACTIONS
-export const serverRenderClock = (isServer) => dispatch => {
-  return dispatch({ type: actionTypes.TICK, light: !isServer, ts: Date.now() })
+export const addPerson = (name, timezone) => dispatch => {
+  return dispatch({ type: actionTypes.ADD_PERSON, data: {name, timezone} })
 }
 
-export const startClock = () => dispatch => {
-  return setInterval(() => dispatch({ type: 'TICK', light: true, ts: Date.now() }), 800)
+export const removePerson = (id) => dispatch => {
+  return dispatch({ type: actionTypes.REMOVE_PERSON, id })
 }
 
-export const addCount = () => dispatch => {
-  return dispatch({ type: actionTypes.ADD })
-}
+export const initStore = (initialState = initialState) => {
+  const composeEnhancers =
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      }) : compose;
 
-export const initStore = (initialState = exampleInitialState) => {
-  return createStore(reducer, initialState, applyMiddleware(thunkMiddleware))
+  return createStore(reducer, initialState, composeEnhancers(
+      applyMiddleware(thunkMiddleware)
+    ))
 }
