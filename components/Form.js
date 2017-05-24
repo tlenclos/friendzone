@@ -5,7 +5,7 @@ import { Input, Select } from 'rebass'
 import momentTimezones from 'moment-timezone'
 import moment from 'moment'
 
-import { addPerson } from '../store'
+import { editPerson } from '../store'
 
 const getTimeZonesForSelect = () => {
   const offsetTimezones = [];
@@ -32,8 +32,18 @@ class Form extends Component {
 
   defaultState() {
     return {
+      id: null,
       name: '',
-      timezone: ''
+      timezone: '',
+      image: ''
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.formEditPerson != nextProps.formEditPerson) {
+      this.setState({
+        ...nextProps.formEditPerson
+      })
     }
   }
 
@@ -43,6 +53,10 @@ class Form extends Component {
 
   handleTimezoneChange = (event) => {
     this.setState({timezone: event.target.value});
+  }
+
+  handleImageChange = (event) => {
+    this.setState({image: event.target.value});
   }
 
   render () {
@@ -57,7 +71,7 @@ class Form extends Component {
           e.preventDefault()
 
           if (this.state.name != '' && this.state.timezone != '') {
-            this.props.addPerson(this.state.name, this.state.timezone)
+            this.props.editPerson(this.state)
             this.setState(this.defaultState())
           }
         }}>
@@ -77,17 +91,28 @@ class Form extends Component {
           value={this.state.timezone}
           onChange={this.handleTimezoneChange}
         />
-        <button type="submit">Add</button>
+        <Input
+          label="Image"
+          name="image"
+          placeholder="Image of the person"
+          type="text"
+          value={this.state.image}
+          onChange={this.handleImageChange}
+        />
+        <button type="submit">{this.state.id != null ? 'Edit' : 'Add'}</button>
+        <button onClick={() => this.setState(this.defaultState())}>Clear</button>
         </form>
       </div>
     )
   }
 }
 
+const mapStateToProps = ({ formEditPerson }) => ({ formEditPerson })
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPerson: bindActionCreators(addPerson, dispatch)
+    editPerson: bindActionCreators(editPerson, dispatch)
   }
 }
 
-export default connect(null, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -2,14 +2,16 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import omit from 'lodash/omit'
 import { persistStore, autoRehydrate } from 'redux-persist'
+import { REHYDRATE } from 'redux-persist/constants'
 
 const initialState = {
-  people: {}
+  people: {},
+  formEditPerson: null
 }
 
 export const actionTypes = {
-  ADD_PERSON: 'ADD_PERSON',
   EDIT_PERSON: 'EDIT_PERSON',
+  SELECT_PERSON: 'SELECT_PERSON',
   REMOVE_PERSON: 'REMOVE_PERSON'
 }
 
@@ -17,31 +19,51 @@ export const actionTypes = {
 let personId = 0
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_PERSON:
+    case actionTypes.EDIT_PERSON:
+      const id = action.data.id != null ? action.data.id : personId++;
       return {
         ...state,
         people: {
           ...state.people,
-          [personId++]: action.data
+          [id]: {
+            ...action.data,
+            id,
+          }
         }
       }
+
     case actionTypes.REMOVE_PERSON:
       return {
         ...state,
         people: omit(state.people, [action.id])
       }
+
+    case actionTypes.SELECT_PERSON:
+      return {
+        ...state,
+        formEditPerson: state.people[action.id]
+      }
+
+    case REHYDRATE:
+      const people = action.payload.people
+      return {people: people}
+
     default:
       return state
   }
 }
 
 // ACTIONS
-export const addPerson = (name, timezone) => dispatch => {
-  return dispatch({ type: actionTypes.ADD_PERSON, data: {name, timezone} })
+export const editPerson = (data) => dispatch => {
+  return dispatch({ type: actionTypes.EDIT_PERSON, data })
 }
 
 export const removePerson = (id) => dispatch => {
   return dispatch({ type: actionTypes.REMOVE_PERSON, id })
+}
+
+export const selectPerson = (id) => dispatch => {
+  return dispatch({ type: actionTypes.SELECT_PERSON, id })
 }
 
 export const initStore = (initialState = initialState) => {
