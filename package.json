@@ -17,6 +17,7 @@
     "react-redux": "^5.0.1",
     "rebass": "^0.3.4",
     "redux": "^3.6.0",
+    "redux-persist": "^4.8.0",
     "redux-thunk": "^2.1.0"
   },
   "author": "",

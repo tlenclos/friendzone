@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import omit from 'lodash/omit'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
 const initialState = {
   people: {}
@@ -51,7 +52,13 @@ export const initStore = (initialState = initialState) => {
         // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
       }) : compose;
 
-  return createStore(reducer, initialState, composeEnhancers(
-      applyMiddleware(thunkMiddleware)
-    ))
+  const store = createStore(reducer, initialState, composeEnhancers(
+    applyMiddleware(thunkMiddleware),
+    autoRehydrate()
+  ))
+
+  // begin periodically persisting the store
+  persistStore(store)
+
+  return store;
 }
