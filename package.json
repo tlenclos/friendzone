@@ -20,6 +20,9 @@
     "redux-persist": "^4.8.0",
     "redux-thunk": "^2.1.0"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Thibault Lenclos",
+  "license": "MIT",
+  "now": {
+    "alias": "friendzone.now.sh"
+  }
 }
