@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import map from 'lodash/map'
 import { bindActionCreators } from 'redux'
+import moment from 'moment'
+
 import { removePerson } from '../store'
 
 class List extends Component {
@@ -10,7 +12,11 @@ class List extends Component {
     return (
       <ul>
         {map(people, (person, key) =>
-          <li key={key}>{person.name} {key} - <button onClick={() => this.props.removePerson(key)}>Remove</button></li>
+          <li key={key} style={{ padding: '0 0 10px 0' }}>
+            {person.name} (GMT {moment.tz(person.timezone).format('Z')}) <button onClick={() => this.props.removePerson(key)}>Remove</button>
+            <br />
+            {moment.tz(person.timezone).format()}
+          </li>
         )}
       </ul>
     )

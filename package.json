@@ -8,11 +8,14 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "next": "^2.4.0",
     "next-redux-wrapper": "^1.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.1",
+    "rebass": "^0.3.4",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"
   },
