@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import map from 'lodash/map'
 import { bindActionCreators } from 'redux'
 import moment from 'moment'
+import { Avatar } from 'rebass'
 
 import { removePerson, selectPerson } from '../store'
 
@@ -17,10 +18,15 @@ class List extends Component {
       <div>
         <ul>
           {map(people, (person, key) =>
-            <li key={key} style={{ padding: '0 0 10px 0' }} onClick={() => this.props.selectPerson(key)}>
-              {person.name} <button onClick={() => this.props.removePerson(key)}>Remove</button>
+            <li key={key} style={{ padding: '0 0 10px 0', listStyleType: 'none'}} onClick={() => this.props.selectPerson(key)}>
+              {person.image ? <Avatar
+                circle
+                size={48}
+                src={person.image}
+                /> : null}
+              {person.name}
               <br />
-              {moment.tz(person.timezone).format()}
+              {moment.tz(person.timezone).format()} <button onClick={() => this.props.removePerson(key)}>Remove</button>
             </li>
           )}
         </ul>
