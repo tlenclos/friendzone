@@ -5,7 +5,7 @@ This project helps you to keep tracks of where your people are and in which time
 ## TODO
 
 - [x] Next.js, redux
+- [x] List of people with timezone
 - [ ] Basic layout with `rebass`
-- [ ] List of people with timezone
 - [ ] Map with timezones https://www.timeanddate.com/time/map/
 - [ ] Drag&drop people on map
