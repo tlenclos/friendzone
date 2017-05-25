@@ -67,12 +67,12 @@ class Index extends React.Component {
             }
         `}</style>
         </Head>
-        <Box sm={0} md={9} lg={9}>
+        <Box col={9}>
           <NoSSR>
             <MapView />
           </NoSSR>
         </Box>
-        <Box sm={12} md={3} lg={3} style={{ height: '100vh', overflow: 'scroll' }}>
+        <Box col={3} style={{ height: '100vh', overflow: 'scroll' }}>
           {Object.keys(this.props.people).length > 0 &&
           <Panel style={{ margin: 0}}>
             <PanelHeader>People</PanelHeader>

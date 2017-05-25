@@ -10,8 +10,8 @@ Keep track of your friends in different time zones.
 - [x] List of people with timezone
 - [x] Basic layout with `rebass`
 - [x] drag/drop people and save location
-- [x] Mobile friendly version
 - [x] Night overlay
+- [ ] Mobile friendly version
 - [ ] Map with timezones detection when people are drop https://www.timeanddate.com/time/map/
 
 ## TODO (v2)
