@@ -11,7 +11,7 @@ let L = null;
 let terminator = null;
 if (typeof window !== 'undefined') {
   L = require('leaflet');
-  terminator = require('leaflet-terminator');
+  require('./../lib/L.Terminator')
 }
 
 class MapView extends Component {
@@ -51,16 +51,12 @@ class MapView extends Component {
         zoom={2}
         ref="map"
         whenReady={(element) => {
-          /*
-          // TODO Draw terminator on all the map
           const mapInstance = element.target.boxZoom._map;
-          terminator()
-            .setStyle({
-              weight: 1,
-              color: '#000',
-              fill: '#000'
-            }).addTo(mapInstance);
-          */
+          L.terminator({
+            color: '#ddd',
+            opacity: 0.1,
+            resolution: 5
+          }).addTo(mapInstance)
       }}>
         <TileLayer
           attribution="&amp;copy <a href=&quot;https://sosm.org/copyright&quot;>OpenStreetMap</a> contributors"

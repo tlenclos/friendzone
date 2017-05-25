@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "leaflet": "^1.0.3",
-    "leaflet-terminator": "^0.1.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
