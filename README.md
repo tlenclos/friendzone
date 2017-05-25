@@ -1,6 +1,8 @@
 # Friendzone
 
-This project helps you to keep tracks of where your people are and in which timezone.
+Keep tracks of your friends in different timezone.
+
+<img src="http://i.imgur.com/ZyOIzJ9.png" width="800" />
 
 ## TODO (v1)
 
@@ -9,10 +11,11 @@ This project helps you to keep tracks of where your people are and in which time
 - [x] Basic layout with `rebass`
 - [x] drag/drop people and save location
 - [x] Mobile friendly version
-- [ ] Night overlay
+- [x] Night overlay
 - [ ] Map with timezones detection when people are drop https://www.timeanddate.com/time/map/
 
 ## TODO (v2)
+- [ ] Geolocate user on first opening of app
 - [ ] Facebook connect
 - [ ] Clusters (https://www.npmjs.com/package/react-leaflet-cluster-layer)
 - [ ] Improve SSR
