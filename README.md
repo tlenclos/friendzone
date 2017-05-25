@@ -1,6 +1,6 @@
 # Friendzone
 
-Keep tracks of your friends in different timezone.
+Keep track of your friends in different time zones.
 
 <img src="http://i.imgur.com/ZyOIzJ9.png" width="800" />
 
