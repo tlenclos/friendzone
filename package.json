@@ -7,6 +7,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-terminator": "^0.1.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
@@ -14,6 +16,9 @@
     "next-redux-wrapper": "^1.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-leaflet": "^1.2.0",
+    "react-leaflet-universal": "^1.0.0",
+    "react-no-ssr": "^1.1.0",
     "react-redux": "^5.0.1",
     "rebass": "^0.3.4",
     "redux": "^3.6.0",

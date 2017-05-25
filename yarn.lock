@@ -718,7 +718,7 @@ babel-register@^6.24.0, babel-register@^6.24.1:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@6.23.0, babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0:
+babel-runtime@6.23.0, babel-runtime@6.x.x, babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -1494,6 +1494,12 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+geojson-area@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/geojson-area/-/geojson-area-0.0.1.tgz#112ba74e6f0507995eadf9b421587dd3d89af7f6"
+  dependencies:
+    wgs84 "0.0.0"
+
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
@@ -1954,6 +1960,26 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+leaflet-geodesy@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/leaflet-geodesy/-/leaflet-geodesy-0.2.1.tgz#d849a8add16b5d9b37f9c5f214e6fe7422bb737b"
+  dependencies:
+    geojson-area "0.0.1"
+    spherical "0.1.0"
+    wgs84 "0.0.0"
+
+leaflet-terminator@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet-terminator/-/leaflet-terminator-0.1.0.tgz#5a703ed15435968518ee23f99cf3dafec54042ca"
+  dependencies:
+    leaflet-geodesy "0.2.1"
+    moment "~2.7.0"
+    spherical "0.0.1"
+
+leaflet@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.3.tgz#1f401b98b45c8192134c6c8d69686253805007c8"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -1996,7 +2022,7 @@ lodash-es@^4.17.4, lodash-es@^4.2.0, lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
-lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.5.1, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.5.1, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -2121,6 +2147,10 @@ moment-timezone@^0.5.13:
 "moment@>= 2.9.0", moment@^2.11.2, moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+
+moment@~2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.7.0.tgz#359a19ec634cda3c706c8709adda54c0329aaec4"
 
 ms@0.7.3:
   version "0.7.3"
@@ -2524,7 +2554,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.10, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@~15.5.7:
+prop-types@15.5.10, prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@~15.5.7:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -2623,6 +2653,24 @@ react-hot-loader@3.0.0-beta.6:
     react-proxy "^3.0.0-alpha.0"
     redbox-react "^1.2.5"
     source-map "^0.4.4"
+
+react-leaflet-universal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-leaflet-universal/-/react-leaflet-universal-1.0.0.tgz#4a20cd5247752f63264d27453237a2c356b0bbf1"
+
+react-leaflet@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-1.2.0.tgz#2829395564cd9d543d8bb3697431804e2f642601"
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.5.0"
+    warning "^3.0.0"
+
+react-no-ssr@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-no-ssr/-/react-no-ssr-1.1.0.tgz#313b48d2e26020f969ed98e472f10481604e3cc8"
+  dependencies:
+    babel-runtime "6.x.x"
 
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"
@@ -2972,6 +3020,18 @@ spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
+spherical@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/spherical/-/spherical-0.0.1.tgz#67328f57bb629b72ecd9a4f6d5211b6a0ac8b6f1"
+  dependencies:
+    wgs84 "0.0.0"
+
+spherical@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/spherical/-/spherical-0.1.0.tgz#1feacc4b83bcd0dc2d895ef8adb85f8a5ec543c2"
+  dependencies:
+    wgs84 "0.0.0"
+
 sshpk@^1.7.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.13.0.tgz#ff2a3e4fd04497555fed97b39a0fd82fafb3a33c"
@@ -3243,6 +3303,12 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+warning@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  dependencies:
+    loose-envify "^1.0.0"
+
 watchpack@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.3.1.tgz#7d8693907b28ce6013e7f3610aa2a1acf07dad87"
@@ -3301,6 +3367,10 @@ webpack@2.5.1:
     watchpack "^1.3.1"
     webpack-sources "^0.2.3"
     yargs "^6.0.0"
+
+wgs84@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/wgs84/-/wgs84-0.0.0.tgz#34fdc555917b6e57cf2a282ed043710c049cdc76"
 
 whatwg-fetch@>=0.10.0:
   version "2.0.3"

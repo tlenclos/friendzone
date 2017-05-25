@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import map from 'lodash/map'
 import { bindActionCreators } from 'redux'
 import moment from 'moment'
-import { Avatar, Badge } from 'rebass'
+import { Avatar, Badge, Button } from 'rebass'
 import { Flex, Box } from 'reflexbox'
 
 import { removePerson, selectPerson } from '../store'
@@ -29,18 +29,20 @@ class List extends Component {
         <ul>
           {map(people, (person, key) =>
             <li key={key} onClick={() => this.props.selectPerson(key)}>
-              <Flex align="center">
-                {person.image ? <Avatar
-                circle
-                size={48}
-                src={person.image}
-                style={{ marginRight: 10 }}
-                /> : null}
-                {person.name}
-              </Flex>
-              <Badge theme="info">{moment.tz(person.timezone).format('LLLL')}</Badge>
+              <Flex align="center" justify="space-between">
+                <Flex align="center">
+                  {person.image ? <Avatar
+                  circle
+                  size={48}
+                  src={person.image}
+                  style={{ marginRight: 10 }}
+                  /> : null}
 
-              <button onClick={() => this.props.removePerson(key)}>Remove</button>
+                  {person.name}
+                </Flex>
+                <Button backgroundColor="#ddd" onClick={() => this.props.removePerson(key)}>Remove</Button>
+              </Flex>
+              <Badge theme="info" style={{ padding: 10, marginTop: 5 }}>{moment.tz(person.timezone).format('LLLL')}</Badge>
             </li>
           )}
         </ul>

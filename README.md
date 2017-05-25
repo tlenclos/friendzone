@@ -7,6 +7,6 @@ This project helps you to keep tracks of where your people are and in which time
 - [x] Next.js, redux
 - [x] List of people with timezone
 - [x] Basic layout with `rebass`
-- [ ] Map with timezones https://www.timeanddate.com/time/map/
-- [ ] Drag&drop people on map
+- [ ] Map with timezones & drag/drop people into zones https://www.timeanddate.com/time/map/
 - [ ] Facebook connect
+- [ ] Clusters (https://www.npmjs.com/package/react-leaflet-cluster-layer)
