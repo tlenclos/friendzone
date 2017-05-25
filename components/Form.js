@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Input, Select } from 'rebass'
+import { Input, Select, Button, Space } from 'rebass'
 import momentTimezones from 'moment-timezone'
 import moment from 'moment'
 
@@ -62,12 +62,8 @@ class Form extends Component {
   render () {
     return (
       <div>
-        <style jsx>{`
-          div {
-            padding: 0 0 20px 0;
-          }
-      `}</style>
-        <form onSubmit={(e) => {
+        <form
+        onSubmit={(e) => {
           e.preventDefault()
 
           if (this.state.name != '' && this.state.timezone != '') {
@@ -99,8 +95,11 @@ class Form extends Component {
           value={this.state.image}
           onChange={this.handleImageChange}
         />
-        <button type="submit">{this.state.id != null ? 'Edit' : 'Add'}</button>
-        <button onClick={() => this.setState(this.defaultState())}>Clear</button>
+        <Button type="submit">
+          {this.state.id != null ? 'Edit' : 'Add'}
+        </Button>
+        <Space x={1} />
+        <Button backgroundColor="#ddd" onClick={() => this.setState(this.defaultState())}>Clear</Button>
         </form>
       </div>
     )
