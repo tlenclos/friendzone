@@ -17,11 +17,19 @@ class Index extends React.Component {
   }
 
   static childContextTypes = {
-    rebass: React.PropTypes.object
+    rebass: React.PropTypes.object,
+    reflexbox: React.PropTypes.object
   }
 
   getChildContext () {
     return {
+      reflexbox: {
+        breakpoints: {
+          sm: '(min-width: 30em)',
+          md: '(min-width: 48em)',
+          lg: '(min-width: 60em)'
+        }
+      },
       rebass: {} // TODO not working
     }
   }
@@ -32,38 +40,39 @@ class Index extends React.Component {
         <Head>
           <title>Friendzone - Keep tracks of your friends in different timezone</title>
           <link href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" rel="stylesheet" />
+          <meta name="viewport" content="width=device-width, user-scalable=no" />
           <style global jsx>{`
             html, body, .leaflet-container {
               margin: 0;
               padding: 0;
               height: 100vh;
               width: 100%;
-          }
-          .friend-marker {
-            width: 50px !important;
-            height: 50px !important;
-            border-radius: 99999px;
-            border: 2px solid white;
-            display: flex;
-            flex: 1;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background-color: #ddd;
-          }
-          .friend-marker img {
-            width: 50px;
-            height: 50px;
-            border-radius: 99999px;
-          }
+            }
+            .friend-marker {
+              width: 50px !important;
+              height: 50px !important;
+              border-radius: 99999px;
+              border: 2px solid white;
+              display: flex;
+              flex: 1;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              background-color: #ddd;
+            }
+            .friend-marker img {
+              width: 50px;
+              height: 50px;
+              border-radius: 99999px;
+            }
         `}</style>
         </Head>
-        <Box col={9}>
+        <Box sm={0} md={9} lg={9}>
           <NoSSR>
             <MapView />
           </NoSSR>
         </Box>
-        <Box col={3}>
+        <Box sm={12} md={3} lg={3} style={{ height: '100vh', overflow: 'scroll' }}>
           {Object.keys(this.props.people).length > 0 &&
           <Panel style={{ margin: 0}}>
             <PanelHeader>People</PanelHeader>
