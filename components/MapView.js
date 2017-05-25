@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet-universal';
 import map from 'lodash/map';
 
+import { editPerson } from '../store'
+
+// Leaflet hack import without SSR
 let L = null;
 let terminator = null;
 if (typeof window !== 'undefined') {
@@ -14,38 +17,42 @@ if (typeof window !== 'undefined') {
 class MapView extends Component {
   state = {
     center: {
-      lat: 51.505,
-      lng: -0.09,
+      lat: 0,
+      lng: 0,
     },
-    marker: {
-      lat: 51.505,
-      lng: -0.09,
-    },
-    draggable: true,
+    defaultMarkerPosition: {
+      lat: 0,
+      lng: 0
+    }
   }
 
-  toggleDraggable = () => {
-    this.setState({ draggable: !this.state.draggable })
+  updatePosition = (element, person) => {
+    person.position = element.target._latlng;
+    this.props.editPerson(person)
   }
 
-  updatePosition = (element) => {
-    const { lat, lng } = element.target._latlng
-    this.setState({
-      marker: { lat, lng },
-    })
+  getHtmlForMarker(person) {
+    if (person.image) {
+      return `<img src="${person.image}">`
+    } else {
+      return person.name
+    }
   }
 
   render () {
     const { people } = this.props
     const position = [this.state.center.lat, this.state.center.lng]
-    const markerPosition = [this.state.marker.lat, this.state.marker.lng]
+    const defaultMarkerPosition = [this.state.defaultMarkerPosition.lat, this.state.defaultMarkerPosition.lng]
+    // TODO Center map on markers
 
     return (
       <Map
         center={position}
-        zoom={3}
+        zoom={2}
         ref="map"
         whenReady={(element) => {
+          /*
+          // TODO Draw terminator on all the map
           const mapInstance = element.target.boxZoom._map;
           terminator()
             .setStyle({
@@ -53,6 +60,7 @@ class MapView extends Component {
               color: '#000',
               fill: '#000'
             }).addTo(mapInstance);
+          */
       }}>
         <TileLayer
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -63,20 +71,13 @@ class MapView extends Component {
             <Marker
               key={key}
               draggable={this.state.draggable}
-              onDragend={this.updatePosition}
-              position={markerPosition}
+              onDragend={(element) => this.updatePosition(element, person)}
+              position={person.position ? [person.position.lat, person.position.lng] : defaultMarkerPosition}
               ref="marker"
               icon={L.divIcon({
                 className: 'friend-marker',
-                html: `
-                    <img src="https://fb-s-b-a.akamaihd.net/h-ak-fbx/v/t1.0-1/c0.0.320.320/p320x320/18268113_10212656488111242_7946029133833942165_n.jpg?oh=8bf4140b79b4a3661fe9a9c0b36c314d&oe=59BA6BB7&__gda__=1503936358_835ffcc4c50ac1675df665cd2482eb13">
-                `
+                html: this.getHtmlForMarker(person)
               })}>
-                <Popup minWidth={90}>
-                <span onClick={this.toggleDraggable}>
-                {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
-                </span>
-                </Popup>
             </Marker>
         )}
       </Map>
@@ -87,7 +88,8 @@ class MapView extends Component {
 const mapStateToProps = ({ people }) => ({ people })
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    editPerson: bindActionCreators(editPerson, dispatch)
+  }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(MapView)

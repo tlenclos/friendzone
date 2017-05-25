@@ -42,12 +42,19 @@ class Index extends React.Component {
           .friend-marker {
             width: 50px !important;
             height: 50px !important;
+            border-radius: 99999px;
+            border: 2px solid white;
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #ddd;
           }
           .friend-marker img {
             width: 50px;
             height: 50px;
             border-radius: 99999px;
-            border: 2px solid white;
           }
         `}</style>
         </Head>
