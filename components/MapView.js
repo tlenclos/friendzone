@@ -70,7 +70,7 @@ class MapView extends Component {
           map(people, (person, key) =>
             <Marker
               key={key}
-              draggable={this.state.draggable}
+              draggable={true}
               onDragend={(element) => this.updatePosition(element, person)}
               position={person.position ? [person.position.lat, person.position.lng] : defaultMarkerPosition}
               ref="marker"
