@@ -14,12 +14,13 @@ class List extends Component {
   }
 
   render () {
-    const { people } = this.props
+    const { people, formEditPerson } = this.props
     return (
       <div>
         <style jsx>{`
           ul {
             padding: 0;
+            margin: 0;
             list-style-type: none;
           }
           li {
@@ -28,7 +29,7 @@ class List extends Component {
 	    `}</style>
         <ul>
           {map(people, (person, key) =>
-            <li key={key} onClick={() => this.props.selectPerson(key)}>
+            <li key={key} onClick={() => this.props.selectPerson(key)} style={{backgroundColor: formEditPerson && person.id === formEditPerson.id ? 'rgb(236, 236, 236)' : 'transparent'}}>
               <Flex align="center" justify="space-between">
                 <Flex align="center">
                   {person.image ? <Avatar
@@ -51,7 +52,7 @@ class List extends Component {
   }
 }
 
-const mapStateToProps = ({ people }) => ({ people })
+const mapStateToProps = ({ people, formEditPerson }) => ({ people, formEditPerson })
 
 const mapDispatchToProps = (dispatch) => {
   return {

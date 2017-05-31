@@ -44,17 +44,28 @@ class MapView extends Component {
     if (this.terminator && nextProps.visible) {
       this.terminator.redraw();
     }
+
+    if (
+      this.props.formEditPerson
+      && nextProps.formEditPerson
+      && this.props.formEditPerson.id != nextProps.formEditPerson.id
+      && nextProps.formEditPerson.position
+    ) {
+      this.setState({
+        center: nextProps.formEditPerson.position
+      })
+    }
   }
 
   render () {
     const { people } = this.props
-    const position = [this.state.center.lat, this.state.center.lng]
     const defaultMarkerPosition = [this.state.defaultMarkerPosition.lat, this.state.defaultMarkerPosition.lng]
     // TODO Center map on markers
 
     return (
       <Map
-        center={position}
+        animate={true}
+        center={this.state.center}
         zoom={2}
         ref="map"
         whenReady={(element) => {
@@ -89,7 +100,7 @@ class MapView extends Component {
   }
 }
 
-const mapStateToProps = ({ people }) => ({ people })
+const mapStateToProps = ({ people, formEditPerson }) => ({ people, formEditPerson })
 
 const mapDispatchToProps = (dispatch) => {
   return {
