@@ -51,6 +51,10 @@ class Index extends React.Component {
               height: 100vh;
               width: 100%;
             }
+            .leaflet-container {
+              position: relative;
+              z-index: 1;
+            }
             .friend-marker {
               width: 50px !important;
               height: 50px !important;
@@ -70,10 +74,10 @@ class Index extends React.Component {
             }
         `}</style>
         </Head>
-        <Box col={9}>
+        <Box sm={0} md={9} lg={9}>
           <MapView />
         </Box>
-        <Box col={3} style={{ height: '100vh', overflow: 'scroll' }}>
+        <Box sm={12} md={6} lg={3} style={{ height: '100%', overflow: 'scroll', position: 'fixed', right: 0, zIndex: 2 }}>
           {this.props.people && Object.keys(this.props.people).length > 0 &&
           <Panel style={{ margin: 0}}>
             <PanelHeader>People</PanelHeader>
