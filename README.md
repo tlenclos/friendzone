@@ -11,6 +11,7 @@ Keep track of your friends in different time zones.
 - [x] Basic layout with `rebass`
 - [x] drag/drop people and save location
 - [x] Night overlay
+- [x] Bug sometime the map is empty on first load
 - [ ] Mobile friendly version
 - [ ] Map with timezones detection when people are drop https://www.timeanddate.com/time/map/
 

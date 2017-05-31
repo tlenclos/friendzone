@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet-universal';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import map from 'lodash/map';
 
 import { editPerson } from '../store'
@@ -62,7 +62,7 @@ class MapView extends Component {
           attribution="&amp;copy <a href=&quot;https://sosm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {L && Object.keys(people).length > 0 &&
+        {L && people && Object.keys(people).length > 0 &&
           map(people, (person, key) =>
             <Marker
               key={key}

@@ -4,12 +4,15 @@ import withRedux from 'next-redux-wrapper'
 import { Flex, Box } from 'reflexbox'
 import { Panel, PanelHeader } from 'rebass'
 import Head from 'next/head'
-import NoSSR from 'react-no-ssr';
+import dynamic from 'next/dynamic';
 
 import { initStore } from '../store'
 import Form from '../components/Form'
 import List from '../components/List'
-import MapView from '../components/MapView'
+const MapView = dynamic(
+  import('../components/MapView'),
+  { ssr: false }
+)
 
 class Index extends React.Component {
   static getInitialProps ({ store, isServer }) {
@@ -68,12 +71,10 @@ class Index extends React.Component {
         `}</style>
         </Head>
         <Box col={9}>
-          <NoSSR>
-            <MapView />
-          </NoSSR>
+          <MapView />
         </Box>
         <Box col={3} style={{ height: '100vh', overflow: 'scroll' }}>
-          {Object.keys(this.props.people).length > 0 &&
+          {this.props.people && Object.keys(this.props.people).length > 0 &&
           <Panel style={{ margin: 0}}>
             <PanelHeader>People</PanelHeader>
             <List />
