@@ -13,6 +13,8 @@ Keep track of your friends in different time zones.
 - [x] Night overlay
 - [x] Bug sometime the map is empty on first load
 - [x] Mobile friendly version
+- [ ] Automatic refresh of data when user access tab
+- [ ] Focus on person on map when focus on right tab
 - [ ] Map with timezones detection when people are drop https://www.timeanddate.com/time/map/
 
 ## TODO (v2)

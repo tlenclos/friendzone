@@ -25,6 +25,7 @@ class MapView extends Component {
       lng: 0
     }
   }
+  terminator = null
 
   updatePosition = (element, person) => {
     person.position = element.target._latlng;
@@ -36,6 +37,12 @@ class MapView extends Component {
       return `<img src="${person.image}">`
     } else {
       return person.name
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.terminator && nextProps.visible) {
+      this.terminator.redraw();
     }
   }
 
@@ -52,11 +59,12 @@ class MapView extends Component {
         ref="map"
         whenReady={(element) => {
           const mapInstance = element.target.boxZoom._map;
-          L.terminator({
+          this.terminator = L.terminator({
             color: '#ddd',
             opacity: 0.1,
             resolution: 5
-          }).addTo(mapInstance)
+          });
+          this.terminator.addTo(mapInstance);
       }}>
         <TileLayer
           attribution="&amp;copy <a href=&quot;https://sosm.org/copyright&quot;>OpenStreetMap</a> contributors"

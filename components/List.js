@@ -42,7 +42,7 @@ class List extends Component {
                 </Flex>
                 <Button backgroundColor="#ddd" onClick={() => this.props.removePerson(key)}>Remove</Button>
               </Flex>
-              <Badge theme="info" style={{ padding: 5, marginTop: 5, height: 'auto' }}>{moment.tz(person.timezone).format('LLLL')}</Badge>
+              <Badge theme="info" style={{ padding: 5, marginTop: 5, height: 'auto' }}>{moment.tz(person.timezone).format('LT, dddd, MMM D')}</Badge>
             </li>
           )}
         </ul>

@@ -15,6 +15,10 @@ const MapView = dynamic(
 )
 
 class Index extends React.Component {
+  state = {
+    visible: true
+  }
+
   static getInitialProps ({ store, isServer }) {
     return { isServer }
   }
@@ -34,6 +38,16 @@ class Index extends React.Component {
         }
       },
       rebass: {} // TODO not working
+    }
+  }
+
+  componentDidMount() {
+    if (document) {
+      document.addEventListener('visibilitychange', (e) => {
+        this.setState({
+          visible: !document.hidden
+        })
+      });
     }
   }
 
@@ -74,14 +88,14 @@ class Index extends React.Component {
             }
         `}</style>
         </Head>
-        <Box sm={0} md={9} lg={9}>
-          <MapView />
+        <Box sm={0} md={12} lg={12}>
+          <MapView visible={this.state.visible} />
         </Box>
         <Box sm={12} md={6} lg={3} style={{ height: '100%', overflow: 'scroll', position: 'fixed', right: 0, zIndex: 2 }}>
           {this.props.people && Object.keys(this.props.people).length > 0 &&
           <Panel style={{ margin: 0}}>
             <PanelHeader>People</PanelHeader>
-            <List />
+            <List visible={this.state.visible} />
           </Panel>
           }
           <Panel>
