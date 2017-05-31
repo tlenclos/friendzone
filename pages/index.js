@@ -41,7 +41,7 @@ class Index extends React.Component {
           <title>Friendzone - Keep tracks of your friends in different timezone</title>
           <link href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" rel="stylesheet" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <style global jsx>{`
+          <style>{`
             html, body, .leaflet-container {
               margin: 0;
               padding: 0;
