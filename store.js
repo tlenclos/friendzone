@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import omit from 'lodash/omit'
-import size from 'lodash/size'
+import uniqid from 'uniqid'
 import { persistStore, autoRehydrate } from 'redux-persist'
 import { REHYDRATE } from 'redux-persist/constants'
 
@@ -20,7 +20,7 @@ export const actionTypes = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.EDIT_PERSON:
-      const id = action.data.id != null ? action.data.id : size(state.people)+1;
+      const id = action.data.id != null ? action.data.id : uniqid.time();
       return {
         ...state,
         people: {
